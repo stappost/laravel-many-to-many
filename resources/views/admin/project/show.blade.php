@@ -16,7 +16,7 @@
                 <p>Tecnologie utilizzate:</p>
                 <ul class="list-unstyled">
                     @forelse ($project->technologies as $technology)
-                        <li>{{ $technology }}</li>
+                        <li>{{ $technology->name }}</li>
                     @empty
                         <li>le tecnologie utilizzate non sono specificate</li>
                     @endforelse

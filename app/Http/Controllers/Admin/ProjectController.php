@@ -54,7 +54,15 @@ class ProjectController extends Controller
         }
         $form_data['slug'] = Str::slug($form_data['name'], '-');
         $project->fill($form_data);
+
         $project->save();
+
+        if($request->has('technologies')){
+            $project->technologies()->attach($form_data['technologies']);
+        }
+        else{
+            $project->technologies()->sync([]);
+        }
 
         return redirect()->route('admin.project.show', compact('project'));
     }
@@ -116,6 +124,12 @@ class ProjectController extends Controller
         $form_data['slug'] = Str::slug($form_data['name'], '-');
         $project->update($form_data);
 
+        if($request->has('technologies')){
+            $project->technologies()->sync($form_data['technologies']);
+        }
+        else{
+            $project->technologies()->sync([]);
+        }
         return redirect()->route('admin.project.show', compact('project'));
     }
 

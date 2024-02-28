@@ -83,7 +83,7 @@
                             <div>
                                 @foreach ($technologies as $technology)
                                     <input type="checkbox" name="technologies[]" id="technology-{{ $technology->id }}"
-                                        class="form-checkbox-inline ms-2">
+                                        class="form-checkbox-inline ms-2" value="{{ $technology->id }}">
                                     <label for="">{{ $technology->name }}</label>
                                 @endforeach
                             </div>
