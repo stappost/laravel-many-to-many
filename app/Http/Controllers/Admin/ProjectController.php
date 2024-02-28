@@ -33,7 +33,8 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.project.store', compact('types'));
+        $technologies = Technology::all();
+        return view('admin.project.store', compact('types', 'technologies'));
     }
 
     /**
@@ -80,7 +81,8 @@ class ProjectController extends Controller
     {
         $error_message = $request->error_message;
         $types = Type::all();
-        return view('admin.project.update', compact('project', 'types', 'error_message'));
+        $technologies = Technology::all();
+        return view('admin.project.update', compact('project', 'types','technologies' , 'error_message'));
     }
 
     /**

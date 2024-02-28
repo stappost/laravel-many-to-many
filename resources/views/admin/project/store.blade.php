@@ -69,13 +69,14 @@
                                 class="form-control @error('logo') is-invalid @enderror" accept="image/*">
                         </div>
                         <div class="col-6 my-3">
-                            @if ($project->logo != null)
-                                <div class="w-25">
-                                    <img src="{{ asset('/storage/' . $project->logo) }}" alt="{{ $project->name }}"
-                                        class="float-end img-fluid">
-
-                                </div>
-                            @endif
+                            <label for="">Tecnologie utilizzate:</label>
+                            <div>
+                                @foreach ($technologies as $technology)
+                                    <input type="checkbox" name="technologies[]" id="technology-{{ $technology->id }}"
+                                        class="form-checkbox-inline ms-2">
+                                    <label for="">{{ $technology->name }}</label>
+                                @endforeach
+                            </div>
                         </div>
                         <div class="col-12">
                             <label for="description">Descrizione</label>
