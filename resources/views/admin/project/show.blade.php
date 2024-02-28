@@ -13,6 +13,14 @@
                         <img src="{{ asset('/placeholder/logo.jpeg') }}" alt="{{ $project->name }}">
                     @endif
                 </div>
+                <p>Tecnologie utilizzate:</p>
+                <ul class="list-unstyled">
+                    @forelse ($project->technologies as $technology)
+                        <li>{{ $technology }}</li>
+                    @empty
+                        <li>le tecnologie utilizzate non sono specificate</li>
+                    @endforelse
+                </ul>
                 <div class="my-3">
                     Inizio Progetto: {{ $project->start_project }}
                     <p>{{ $project->finish_project ? 'Fine Progetto: ' . $project->finish_project : '' }}</p>
