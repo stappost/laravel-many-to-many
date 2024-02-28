@@ -28,7 +28,7 @@ class UpdateProjectRequest extends FormRequest
             'name' => 'required|max:50',
             'description' => 'required',
             'logo'=> 'max:250|image|max:1024',
-            'type_id' => 'nullable|exists:types',
+            'type_id' => 'nullable|exists:types,id',
             'start_project'=> 'required|date',
             'finish_project'=> 'date',
             'in_team'=> 'required'

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::table('projects', function (Blueprint $table) {
             $table->unsignedBigInteger('type_id')->after('id')->nullable();
 
-            $table->foreign('type_id')->references('id')->on('types')->ondelete('set null');
+            $table->foreign('type_id')->references('id')->on('types')->onDelete('set null');
         });
     }
 

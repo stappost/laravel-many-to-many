@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProjectRequest;
@@ -45,7 +46,7 @@ class ProjectController extends Controller
     {
         $project = new Project();
         $form_data = $request->all();
-
+        
         if($request->hasFile('logo')){
             $path = Storage::disk('public')->put('logos_image', $form_data['logo']);
             $form_data['logo'] = $path;
@@ -91,6 +92,7 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $form_data = $request->all();
+        // title control 
         $exist = Project::where('name', 'LIKE', $form_data['name'])
             ->where('id', '!=', $project->id)
             ->get();
@@ -99,7 +101,7 @@ class ProjectController extends Controller
             $error_message = 'Hai inserito un nome già presente tra i tuoi progetti';
             return redirect()->route('admin.project.edit', compact('project', 'error_message'));
         }
-
+        // logo control
         if($request->hasFile('logo')){
             if($project->logo != null){
                 Storage::disk('public')->delete($project->logo);
@@ -107,7 +109,7 @@ class ProjectController extends Controller
             $path = Storage::disk('public')->put('logos_image', $form_data['logo']);
             $form_data['logo'] = $path;
         }
-
+        // create slug 
         $form_data['slug'] = Str::slug($form_data['name'], '-');
         $project->update($form_data);
 
